@@ -1,0 +1,116 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    class Program
+    {
+        class Stroka
+        {
+            string line;
+            public Stroka(string our_line) 
+            {
+                this.line = our_line;
+
+                //char[] arr_string = line.ToCharArray();
+                //Array.Reverse(arr);
+                //return new string(arr);
+            }
+            public int rep_symb (char sybol) 
+            {
+                int rep = 0;
+                char[] arr_string = line.ToCharArray();
+                foreach (char letter in arr_string) 
+                {
+                    if (letter == sybol)
+                        rep++;
+                }
+                return rep;
+            }
+            public string split_rewerse(int split)
+            {
+                //line.Split(new char [] [split])
+                //char[] first_arr = first_line.ToCharArray();
+                //Array.Reverse(first_arr);
+                //string first_string = new string(first_arr);
+                //char[] second_arr = second_line.ToCharArray();
+                //Array.Reverse(second_arr);
+                //string second_string = new string(second_arr);
+                //return (first_string + second_string);
+                return "";
+            }
+            public int vowel_number()
+            {
+                line = line.ToLowerInvariant();
+                char[] arr_string = line.ToCharArray();
+                int VN = 0;
+                foreach (char symbol in arr_string)
+                {
+                    if ((symbol == 97) || (symbol == 101) || (symbol == 105) || (symbol == 111) || (symbol == 117) || (symbol == 121))
+                    {
+                        VN++;
+                    } 
+                }
+                return VN;
+            }
+        }
+   
+        static int Main()
+        {
+           
+            string stroka;
+            Console.WriteLine("Введите свою строку: ");
+            stroka = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Введите символ, повторение которого хотите проверить: ");
+
+            char symb = '▌'; 
+            string check = Console.ReadLine();
+            try
+            {
+                symb = Convert.ToChar(check);
+            }
+            catch (System.FormatException)
+            {
+                Console.WriteLine("Ошибка, ввод некорректен!");
+                Console.ReadKey();
+                return 0;
+            } // проверки на корректность ввода
+            Console.WriteLine("Введите разделитель: ");/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            int splitter = 0;
+            string second_check = Console.ReadLine();
+            try 
+            {
+                splitter = Convert.ToInt32(second_check);
+            }
+            catch (System.FormatException)
+            {
+                Console.WriteLine("Введённый разделитель имеет неверный формат!");
+                Console.ReadKey();
+                return 0;
+            } // проверки на корректность ввода
+            if ((splitter >= stroka.Length) || (splitter <= 0)) 
+            {
+                Console.WriteLine("Введённый разделитель имеет неверный формат!");
+                Console.ReadKey();
+                return 0;
+            } // проверка на корректность ввода разделителя
+                
+            Stroka test1 = new Stroka(stroka);
+
+            //вывод
+            Console.WriteLine("Кол-во повторений введённого вами символа: ");
+            Console.WriteLine(test1.rep_symb(symb));
+            Console.WriteLine("Развернутая по разделителю строка: ");
+            Console.WriteLine(test1.split_rewerse(splitter));
+            Console.WriteLine("Vovel: ");
+            Console.WriteLine(test1.vowel_number());
+            Console.ReadKey();
+            return 0;
+
+        }
+    }
+}
